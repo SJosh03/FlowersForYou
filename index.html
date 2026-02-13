@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentine's Day ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at top right, #ffebf0, #ffe0e8, #ffd6e0, #ffc9d6);
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    /* Animated background particles */
+    .bg-particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .bg-particle {
+      position: absolute;
+      opacity: 0;
+      animation: floatParticle linear infinite;
+    }
+    
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(var(--drift)) rotate(360deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+    
+    /* Smooth heartbeat */
+    @keyframes heartbeat {
+      0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.3));
+      }
+      7% { 
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.6));
+      }
+      14% { transform: scale(1); }
+      21% { 
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.6));
+      }
+      28% { transform: scale(1); }
+    }
+    
+    /* Gentle rose float */
+    @keyframes roseFloat {
+      0%, 100% { 
+        transform: translateY(0) rotate(-2deg);
+      }
+      50% { 
+        transform: translateY(-20px) rotate(2deg);
+      }
+    }
+    
+    /* Mobile optimized rose float */
+    @media (max-width: 640px) {
+      @keyframes roseFloat {
+        0%, 100% { 
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% { 
+          transform: translateY(-10px) rotate(1deg);
+        }
+      }
+    }
+    
+    /* Fade and scale in */
+    @keyframes fadeScaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    
+    /* Shimmer text */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    
+    /* Glow pulse */
+    @keyframes glowPulse {
+      0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 182, 193, 0.4),
+                    0 0 40px rgba(255, 182, 193, 0.2),
+                    0 20px 60px rgba(0, 0, 0, 0.1);
+      }
+      50% { 
+        box-shadow: 0 0 30px rgba(255, 182, 193, 0.6),
+                    0 0 60px rgba(255, 182, 193, 0.3),
+                    0 20px 80px rgba(0, 0, 0, 0.15);
+      }
+    }
+    
+    /* Mobile optimized glow */
+    @media (max-width: 640px) {
+      @keyframes glowPulse {
+        0%, 100% { 
+          box-shadow: 0 0 15px rgba(255, 182, 193, 0.3),
+                      0 0 30px rgba(255, 182, 193, 0.15),
+                      0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        50% { 
+          box-shadow: 0 0 20px rgba(255, 182, 193, 0.5),
+                      0 0 40px rgba(255, 182, 193, 0.25),
+                      0 10px 50px rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+    
+    /* Sparkle animation */
+    @keyframes sparkle {
+      0%, 100% { 
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+      50% { 
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+      }
+    }
+    
+    .heartbeat {
+      animation: heartbeat 3s ease-in-out infinite;
+    }
+    
+    .rose-float {
+      animation: roseFloat 5s ease-in-out infinite;
+    }
+    
+    .fade-scale-in {
+      animation: fadeScaleIn 1s ease-out forwards;
+    }
+    
+    .shimmer-text {
+      background: linear-gradient(90deg, 
+        #be123c 0%, 
+        #e11d48 25%, 
+        #f43f5e 50%, 
+        #e11d48 75%, 
+        #be123c 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      animation: glowPulse 4s ease-in-out infinite;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .rose-container {
+      position: relative;
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.2));
+    }
+    
+    @media (max-width: 640px) {
+      .rose-container {
+        filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+      }
+    }
+    
+    .rose-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+      filter: blur(20px);
+      z-index: -1;
+    }
+    
+    @media (max-width: 640px) {
+      .rose-glow {
+        filter: blur(15px);
+      }
+    }
+    
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    /* Desktop sparkles */
+    @media (min-width: 641px) {
+      .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+      .sparkle:nth-child(2) { top: 20%; right: 20%; animation-delay: 0.5s; }
+      .sparkle:nth-child(3) { bottom: 25%; left: 25%; animation-delay: 1s; }
+      .sparkle:nth-child(4) { bottom: 15%; right: 15%; animation-delay: 1.5s; }
+      .sparkle:nth-child(5) { top: 50%; left: 10%; animation-delay: 0.3s; }
+      .sparkle:nth-child(6) { top: 30%; right: 10%; animation-delay: 0.8s; }
+    }
+    
+    /* Mobile sparkles - repositioned */
+    @media (max-width: 640px) {
+      .sparkle {
+        width: 3px;
+        height: 3px;
+      }
+      .sparkle:nth-child(1) { top: 5%; left: 10%; animation-delay: 0s; }
+      .sparkle:nth-child(2) { top: 15%; right: 10%; animation-delay: 0.5s; }
+      .sparkle:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 1s; }
+      .sparkle:nth-child(4) { bottom: 10%; right: 15%; animation-delay: 1.5s; }
+      .sparkle:nth-child(5) { top: 40%; left: 5%; animation-delay: 0.3s; }
+      .sparkle:nth-child(6) { top: 25%; right: 5%; animation-delay: 0.8s; }
+    }
+    
+    .decorative-heart {
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    
+    .decorative-heart:hover {
+      transform: scale(1.3) rotate(15deg);
+      filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+    }
+    
+    /* Mobile touch optimization */
+    @media (max-width: 640px) {
+      .decorative-heart:active {
+        transform: scale(1.3) rotate(15deg);
+        filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+      }
+    }
+    
+    .divider-line {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #f9a8d4, transparent);
+      opacity: 0.6;
+    }
+    
+    @media (max-width: 640px) {
+      .divider-line {
+        height: 1.5px;
+      }
+    }
+    
+    .message-box {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 240, 245, 0.9));
+      border: 1px solid rgba(255, 182, 193, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .message-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+    }
+    
+    /* Mobile message box optimization */
+    @media (max-width: 640px) {
+      .message-box:active {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 20px rgba(255, 182, 193, 0.3);
+      }
+    }
+    
+    /* Corner ornaments */
+    .corner-ornament {
+      position: absolute;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    /* Desktop corner ornaments */
+    @media (min-width: 641px) {
+      .corner-ornament {
+        font-size: 3rem;
+      }
+      .corner-ornament.top-left { top: -20px; left: -20px; transform: rotate(-15deg); }
+      .corner-ornament.top-right { top: -20px; right: -20px; transform: rotate(15deg); }
+      .corner-ornament.bottom-left { bottom: -20px; left: -20px; transform: rotate(15deg); }
+      .corner-ornament.bottom-right { bottom: -20px; right: -20px; transform: rotate(-15deg); }
+    }
+    
+    /* Mobile corner ornaments - smaller and repositioned */
+    @media (max-width: 640px) {
+      .corner-ornament {
+        font-size: 2rem;
+        opacity: 0.1;
+      }
+      .corner-ornament.top-left { top: -10px; left: -10px; transform: rotate(-15deg); }
+      .corner-ornament.top-right { top: -10px; right: -10px; transform: rotate(15deg); }
+      .corner-ornament.bottom-left { bottom: -10px; left: -10px; transform: rotate(15deg); }
+      .corner-ornament.bottom-right { bottom: -10px; right: -10px; transform: rotate(-15deg); }
+    }
+    
+    /* Mobile-specific optimizations */
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+      
+      .card {
+        border-width: 1.5px;
+      }
+      
+      /* Reduce particle count on mobile */
+      .bg-particle:nth-child(n+8) {
+        display: none;
+      }
+    }
+    
+    /* Ensure text is readable on small screens */
+    @media (max-width: 374px) {
+      .shimmer-text {
+        font-size: 2.5rem !important;
+        line-height: 1.1;
+      }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+  
+  <!-- Animated background particles -->
+  <div class="bg-particles" id="particles"></div>
+  
+  <!-- Main card -->
+  <div class="card text-center p-6 sm:p-8 md:p-12 lg:p-14 rounded-3xl md:rounded-[2.5rem] max-w-[95%] sm:max-w-md md:max-w-lg lg:max-w-2xl w-full relative overflow-visible my-4">
+    
+    <!-- Corner ornaments -->
+    <div class="corner-ornament top-left">🌹</div>
+    <div class="corner-ornament top-right">💕</div>
+    <div class="corner-ornament bottom-left">💖</div>
+    <div class="corner-ornament bottom-right">🌹</div>
+    
+    <!-- Sparkles -->
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    
+    <!-- Top heart - responsive sizing -->
+    <div class="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 text-5xl sm:text-6xl md:text-7xl heartbeat z-20">
+      ❤️
+    </div>
+    
+    <!-- Rose Image with glow - responsive sizing -->
+    <div class="rose-container mt-4 sm:mt-6 mb-6 sm:mb-8 fade-scale-in" style="animation-delay: 0.2s;">
+      <div class="rose-glow"></div>
+      <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=600&q=90" 
+           alt="Beautiful Red Rose" 
+           class="mx-auto w-40 sm:w-48 md:w-60 lg:w-72 rounded-2xl sm:rounded-3xl rose-float"
+           style="object-fit: cover; aspect-ratio: 1/1;">
+    </div>
+    
+    <!-- Main heading - responsive text sizing -->
+    <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold shimmer-text mb-3 sm:mb-4 fade-scale-in tracking-tight leading-tight px-2" style="animation-delay: 0.4s;">
+      Happy Valentine's Day
+    </h1>
+    
+    <!-- Subtitle - responsive text sizing -->
+    <h2 class="text-xl sm:text-2xl md:text-3xl text-rose-600 font-light italic mb-6 sm:mb-8 fade-scale-in" style="animation-delay: 0.6s;">
+      My Dearest Love
+    </h2>
+    
+    <!-- Decorative divider - responsive sizing -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 fade-scale-in" style="animation-delay: 0.8s;">
+      <div class="divider-line w-16 sm:w-20 md:w-32"></div>
+      <span class="text-2xl sm:text-3xl md:text-4xl">💝</span>
+      <div class="divider-line w-16 sm:w-20 md:w-32"></div>
+    </div>
+    
+    <!-- Message box - responsive padding and text -->
+    <div class="message-box rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8 fade-scale-in" style="animation-delay: 1s;">
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-800 font-semibold mb-3 sm:mb-4 leading-relaxed">
+        To the most beautiful girl in my life
+      </p>
+      <p class="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed px-2 sm:px-0">
+        You make every moment magical, every day brighter,
+        and every dream more beautiful. My heart is yours,
+        today and always.
+      </p>
+    </div>
+    
+    <!-- Bottom decorative hearts - responsive sizing and spacing -->
+    <div class="flex justify-center gap-2 sm:gap-3 md:gap-5 text-3xl sm:text-4xl md:text-5xl fade-scale-in flex-wrap" style="animation-delay: 1.2s;">
+      <span class="decorative-heart">💕</span>
+      <span class="decorative-heart">💖</span>
+      <span class="decorative-heart">💗</span>
+      <span class="decorative-heart">💝</span>
+      <span class="decorative-heart">❤️</span>
+    </div>
+    
+    <!-- Footer text - responsive sizing -->
+    <p class="mt-6 sm:mt-8 text-xs sm:text-sm md:text-base text-gray-500 italic fade-scale-in" style="animation-delay: 1.4s;">
+      Forever yours, with all my love
+    </p>
+  </div>
+  
+  <script>
+    // Generate background particles
+    const particlesContainer = document.getElementById('particles');
+    const particleEmojis = ['💕', '❤️', '💖', '💗', '💝', '🌹'];
+    
+    // Adjust particle count based on screen size
+    const isMobile = window.innerWidth < 640;
+    const particleCount = isMobile ? 8 : 15;
+    const particleInterval = isMobile ? 3000 : 2000;
+    
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'bg-particle';
+      particle.textContent = particleEmojis[Math.floor(Math.random() * particleEmojis.length)];
+      particle.style.left = Math.random() * 100 + '%';
+      
+      // Smaller particles on mobile
+      const baseFontSize = isMobile ? 0.8 : 1;
+      particle.style.fontSize = (Math.random() * 1.5 + baseFontSize) + 'rem';
+      
+      particle.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+      particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      
+      particlesContainer.appendChild(particle);
+      
+      // Remove after animation
+      setTimeout(() => particle.remove(), 15000);
+    }
+    
+    // Create initial particles
+    for (let i = 0; i < particleCount; i++) {
+      setTimeout(createParticle, i * 300);
+    }
+    
+    // Continuously add particles
+    setInterval(createParticle, particleInterval);
+    
+    // Recreate particles on resize if screen size category changes
+    let wasMobile = isMobile;
+    window.addEventListener('resize', () => {
+      const nowMobile = window.innerWidth < 640;
+      if (wasMobile !== nowMobile) {
+        wasMobile = nowMobile;
+        location.reload(); // Simple solution to adjust particle count
+      }
+    });
+  </script>
+  
+</body>
+</html>
